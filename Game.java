@@ -1,8 +1,9 @@
 class Game {
 	
 	public Move turn(Player player,Player enemy){
-		Move moveMade=new Move(player.makeMove());
-		execute(moveMade,player,enemy);
+		Move moveMade=player.makeMove();
+		moveMade.execute(player,enemy);
+		player.destroyCard(moveMade.getCard());
 		String winner=checkForWin(player,enemy);
 		if (winner!=null)
 		{
@@ -11,6 +12,8 @@ class Game {
 		}
 		//after each round, stocks are increased for each player accordingly
 		increaseStocks(player,enemy);
+		
+	System.out.println(moveMade.getCard().getName());
 		return moveMade;
 	}
 	public void getStats(Player p1, Player p2){
@@ -24,69 +27,6 @@ class Game {
 		System.out.println("Castle: "+p1.getCastle()+"\tCastle: "+p2.getCastle());
 		System.out.println("Fence: "+p1.getFence()+"\tFence: "+p2.getFence());
 		
-	}
-	public void execute(Move move,Player user,Player enemy)
-	{
-		if (move.getMethod()=="discard")
-		{
-			user.destroyCard(move.getCard());
-		}
-		else {
-			String power=move.getCard().getPower();
-			int amount;
-			//Lose stocks
-			String resource=move.getCard().getResource();
-			if (resource=="crystals")
-				user.decreaseCrystals(move.getCard().getAmount());
-			else if (resource=="bricks")
-				user.decreaseBricks(move.getCard().getAmount());
-			else if (resource=="weapons")
-				user.decreaseWeapons(move.getCard().getAmount());
-			//destroy card
-			user.destroyCard(move.getCard());
-			//execute its power
-			if (power.contains("builders +"))
-				user.increaseBuilders();
-			if (power.contains("soldiers +"))
-				user.increaseSoldiers();
-			if (power.contains("magic +"))
-				user.increaseMagic();
-			if(power.contains("attack")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				if (enemy.getFence()<amount)
-				{
-					int damageRemaining= amount-enemy.getFence();
-					enemy.destroyFence(amount);
-					enemy.destroyCastle(damageRemaining);
-				}else enemy.destroyFence(amount);}
-			if (power.contains("castle -")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				enemy.destroyCastle(amount);}
-			if (power.contains ("castle +")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				user.buildCastle(amount);}
-			if (power.contains("fence +")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				user.buildFence(amount);}
-			if (power.contains("crystals -")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				enemy.decreaseCrystals(amount);}
-			if (power.contains("weapons -")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				enemy.decreaseWeapons(amount);}
-			if (power.contains("bricks -")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				enemy.decreaseBricks(amount);}
-			if (power.contains("weapons +")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				user.increaseWeapons(amount);}
-			if (power.contains("bricks +")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				user.increaseBricks(amount);}
-			if (power.contains("crystals +")){
-				amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
-				user.increaseCrystals(amount);}
-		}
 	}
 	public void showHands(Player p1,Player p2)
 	{

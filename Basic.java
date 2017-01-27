@@ -34,35 +34,35 @@ class Basic implements Strategy {
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
 		legalMoves=legalMoves(p);
 		int chosen; //index of chosen card
-		Move m=new Move("use",p.getCard(0));
+		Move m=new UseCard(p.getCard(0));
 		//if theres no other cards to choose from, return this move
 		if (legalMoves.isEmpty())
 		{
-			return m=new Move("discard", p.getCard(discardCard(p)));
+			return m=new DiscardCard(p.getCard(discardCard(p)));
 		}
 		//first look to increase builders,soldiers, and magic because after each round you acquire as many bricks,weapons,and crystals respectively;
 		for (int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="resource")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//build your castle to stay alive
 		for (int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="build")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//attack to prevent other player to win
 		for (int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="attack")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//gain stocks to be able to use cards
 		for (int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="gain")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		return m;
 	}

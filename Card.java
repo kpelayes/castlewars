@@ -157,7 +157,62 @@ class Card {
 			type="attack";
 		}
 	}
-	
+	public void destroyCard(Player user){
+		user.destroyCard(this);
+	}
+	public void effect(Player user, Player enemy)
+	{
+		//Lose stocks
+		if (resource=="crystals")
+			user.decreaseCrystals(amount);
+		else if (resource=="bricks")
+			user.decreaseBricks(amount);
+		else if (resource=="weapons")
+			user.decreaseWeapons(amount);
+			
+		//execute its power
+		if (power.contains("builders +"))
+			user.increaseBuilders();
+		if (power.contains("soldiers +"))
+			user.increaseSoldiers();
+		if (power.contains("magic +"))
+			user.increaseMagic();
+		if(power.contains("attack")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			if (enemy.getFence()<amount)
+			{
+				int damageRemaining= amount-enemy.getFence();
+				enemy.destroyFence(amount);
+				enemy.destroyCastle(damageRemaining);
+			}else enemy.destroyFence(amount);}
+		if (power.contains("castle -")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			enemy.destroyCastle(amount);}
+		if (power.contains ("castle +")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			user.buildCastle(amount);}
+		if (power.contains("fence +")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			user.buildFence(amount);}
+		if (power.contains("crystals -")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			enemy.decreaseCrystals(amount);}
+		if (power.contains("weapons -")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			enemy.decreaseWeapons(amount);}
+		if (power.contains("bricks -")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			enemy.decreaseBricks(amount);}
+		if (power.contains("weapons +")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			user.increaseWeapons(amount);}
+		if (power.contains("bricks +")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			user.increaseBricks(amount);}
+		if (power.contains("crystals +")){
+			amount=Integer.parseInt(power.replaceAll("[\\D]", ""));
+			user.increaseCrystals(amount);}
+	}
 	public String getName() {return name;}
 	public String getResource() {return resource;}
 	public int getAmount(){return amount;}

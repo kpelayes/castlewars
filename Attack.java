@@ -66,28 +66,29 @@ class Attack implements Strategy{
 		}
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
 		legalMoves=legalMoves(p);
-		Move m=new Move("use",p.getCard(0));
+		Move m=new UseCard(p.getCard(0));
 		if (legalMoves.isEmpty()){
-			m=new Move("discard",discardCard(p));
+			m=new DiscardCard(discardCard(p));
 			return m;
 		}
 		//if only one option use it
 		if (legalMoves.size()==1)
 		{
-			m=new Move("use",legalMoves.get(0));
+			m=new UseCard(legalMoves.get(0));
 			return m;
 		}
+	
 		//first look to increase builders,soldiers, and magic because after each round you acquire as many bricks,weapons,and crystals respectively;
 		for(int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="resource")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//choose based on priority 
 		for(int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()==priority)
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//do opposite
 		if (priority=="build")
@@ -98,13 +99,13 @@ class Attack implements Strategy{
 		for(int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()==priority)
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		//gain 
 		for(int i=0;i<legalMoves.size();i++)
 		{
 			if (legalMoves.get(i).getType()=="gain")
-				return m=new Move("use",legalMoves.get(i));
+				return m=new UseCard(legalMoves.get(i));
 		}
 		return m;
 	}
