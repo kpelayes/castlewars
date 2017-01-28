@@ -7,7 +7,7 @@ class Game {
 		String winner=checkForWin(player,enemy);
 		if (winner!=null)
 		{
-			System.out.println(winner+ "won!");
+			System.out.println(winner+ " won!");
 			System.exit(0);//quit the game
 		}
 		//after each round, stocks are increased for each player accordingly
@@ -30,12 +30,18 @@ class Game {
 	}
 	public void showHands(Player p1,Player p2)
 	{
-		System.out.print("Player 1\tCastle: "+p1.getCastle()+"\tFence: "+p1.getFence()+
-			"\n_______________________________________________________\nHand------->");
-		p1.showHand();
-		System.out.print("Player 2\tCastle: "+p2.getCastle()+"\tFence: "+p2.getFence()+
-		"\n_______________________________________________________\nHand------->");
-		p2.showHand();
+		if (p1 != null)
+		{
+			System.out.print("Player 1\tCastle: "+p1.getCastle()+"\tFence: "+p1.getFence()+
+					"\n_______________________________________________________\nHand------->");
+			p1.showHand();
+		}
+		else if ( p2 != null)
+		{
+			System.out.print("Player 2\tCastle: "+p2.getCastle()+"\tFence: "+p2.getFence()+
+					"\n_______________________________________________________\nHand------->");
+			p2.showHand();
+		}		
 	}
 	public String checkForWin(Player p1,Player p2)
 	{
