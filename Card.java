@@ -56,8 +56,8 @@ class Card {
 			power="enemy castle -10";
 			type="attack";
 		}else if(name=="School"){
-			resource="crystals";
-			amount=4;
+			resource="bricks";
+			amount=8;
 			power="builders +1";
 			type="resource";
 		}else if(name=="Pixies"){

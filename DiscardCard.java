@@ -4,6 +4,7 @@ public class DiscardCard extends Move{
 		card=_card;
 	}
 	public void execute(Player user,Player enemy){
+		System.out.print("Destroyed ");
 		card.destroyCard(user);
 	}
 }

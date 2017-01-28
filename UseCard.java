@@ -4,6 +4,7 @@ public class UseCard extends Move{
 		card=_card;
 	}
 	public void execute(Player user,Player enemy){
+		System.out.print("Chose ");
 		card.effect(user,enemy);
 	}
 }

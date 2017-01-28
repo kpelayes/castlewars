@@ -1,13 +1,13 @@
 
 import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 public class Driver {
-	Duel game=  new Game();
 	Player p1=new Player();
 	Player p2=new Player();
-
+	
 	@Test
 	public void useCardtest()
 	{	
@@ -30,6 +30,15 @@ public class Driver {
 		assertEquals(p2.getWeapons(),5);
 		assertEquals(p2.getBricks(),5);
 		assertEquals(p2.getCrystals(),5);
+	}
+	@AfterClass
+	public static void runOnce(){
+		System.out.println("\n\n\nBattle\n\n\n");
+		Player p1=new Player();
+		Player p2=new Player();
+		p1.changeStrategy(new Attack());
+		Duel game = new Game(p1,p2);
+		game.play();
 	}
 
 }

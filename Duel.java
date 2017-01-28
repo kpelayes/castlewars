@@ -1,30 +1,26 @@
 
-public abstract class Duel{
+public abstract class Duel{ 
+	private Player p1;
+	private Player p2;
 	
-	static Player player1;
-	static Player player2;
-	static Hand hand;
-	static Strategy s;
-	static Move move;
-	
-	public Duel()  { }
-	public Duel(Player player, String key)
+	public Duel(Player player1,Player player2){
+		p1=player1;
+		p2=player2;
+	}
+	public Player getPlayer(int p){
+		if (p==1)
+			return p1;
+		else return p2;
+	}
+	public void getStats(Player player){
+		System.out.print("\tCastle: "+player.getCastle()+"\tFence: "+player.getFence()+"\t b:"+player.getBricks()+" w:"+player.getWeapons()+" c:"+player.getCrystals()+
+				"\n__________________________________________________________________\nHand------->");
+		
+	}
+	public void showHand(Player player)
 	{
-		hand = new Hand();
-		if (key.contains("player1"))
-		{
-			player1 = new Player();
-			player1.changeHand(hand);
-			s = new Attack();
-			player1.changeStrategy(s);			
-		}
-		else if (key.contains("player2"))
-		{
-			player2 = new Player();
-			player2.changeHand(hand);
-			s = new Attack();
-			player2.changeStrategy(s);
-		}
+			getStats(player);
+			player.showHand();
 	}
 	public abstract void play();
 }

@@ -1,93 +1,47 @@
 class Game extends Duel{
-
-	public Game(Player player, String key) {
-		super(player, key);
-		// TODO Auto-generated constructor stub
+	public Game(Player player1,Player player2){
+		super(player1,player2);
 	}
-	public Game() { }
-
+	//continuous loop to execute each round
 	public void play()
 	{
-		int playerTurn = 1;		
-		while (true)
-		{			
-			if (playerTurn % 2 == 1)
-			{
-				playerTurn = 1;
-			}
-			else if (playerTurn % 2 == 2)
-			{
-				playerTurn = 2;
-			}
-					
-			if (playerTurn == 1)
-			{
-				this.showHands(player1, null);
-				this.printResult(player1, player2);
-			}
-			else if (playerTurn == 2)
-			{
-				this.showHands(null, player2);
-				this.printResult(player2, player1);
-
-			}		
-			playerTurn++;
+		Player p1=getPlayer(1);
+		Player p2=getPlayer(2);
+		while(true){
+			round(p1,p2);
 		}
 	}
 	
-	public void printResult(Player p1, Player p2)
-	{
-		move = this.turn(p1, p2);
-		for (int i = 0; i < 5; i++)
-		{
-			System.out.println("\n");
-		}
-	}
-	
-	public Move turn(Player player,Player enemy){
-		Move moveMade=player.makeMove();
-		moveMade.execute(player,enemy);
-		player.destroyCard(moveMade.getCard());
-		String winner=checkForWin(player,enemy);
-		if (winner!=null)
-		{
-			System.out.println(winner+ " won!");
-			System.exit(0);//quit the game
-		}
-		//after each round, stocks are increased for each player accordingly
-		increaseStocks(player,enemy);
+	//each player gets a move
+	//game checks for a winner after each move is executed
+	public Move round(Player p1,Player p2){
+		System.out.print("Player 1");
+		showHand(p1);
+		Move moveMade=p1.makeMove();
+		moveMade.execute(p1,p2);
+		System.out.print(moveMade.getCard().getName());
+		System.out.println(" - "+moveMade.getCard().getPower());
+		System.out.println("\n\n\n");
+		p1.destroyCard(moveMade.getCard());
 		
-	System.out.println(moveMade.getCard().getName());
+		checkForWin(p1,p2);
+		
+		System.out.print("Player 2");
+		showHand(p2);
+		moveMade=p2.makeMove();
+		moveMade.execute(p2,p1);
+		System.out.print(moveMade.getCard().getName());
+		System.out.println(" - "+moveMade.getCard().getPower());
+		System.out.println("\n\n\n");
+		p2.destroyCard(moveMade.getCard());
+		
+		checkForWin(p1,p2);
+		
+		//after each round, stocks are increased for each player accordingly
+		increaseStocks(p1,p2);
 		return moveMade;
 	}
-	public void getStats(Player p1, Player p2){
-	    System.out.println("Player 1 \t Player 2");
-		System.out.println("Builders: "+p1.getBuilders()+"\tBuilders: "+p2.getBuilders());
-		System.out.println("Bricks: "+p1.getBricks()+"\tBricks: "+p2.getBricks());
-		System.out.println("Soldiers: "+p1.getSoldiers()+"\tSoldiers: "+p2.getSoldiers());
-		System.out.println("Weapons: "+p1.getWeapons()+"\tWeapons: "+p2.getWeapons());
-		System.out.println("Magic: "+p1.getMagic()+"\tMagic: "+p2.getMagic());
-		System.out.println("Crystals: "+p1.getCrystals()+"\tCrystals: "+p2.getCrystals());
-		System.out.println("Castle: "+p1.getCastle()+"\tCastle: "+p2.getCastle());
-		System.out.println("Fence: "+p1.getFence()+"\tFence: "+p2.getFence());
-		
-	}
-	public void showHands(Player p1,Player p2)
-	{
-		if (p1 != null)
-		{
-			System.out.print("Player 1\tCastle: "+p1.getCastle()+"\tFence: "+p1.getFence()+
-					"\n_______________________________________________________\nHand------->");
-			p1.showHand();
-		}
-		else if ( p2 != null)
-		{
-			System.out.print("Player 2\tCastle: "+p2.getCastle()+"\tFence: "+p2.getFence()+
-					"\n_______________________________________________________\nHand------->");
-			p2.showHand();
-		}		
-	}
-	public String checkForWin(Player p1,Player p2)
+	public void checkForWin(Player p1,Player p2)
 	{
 		//Users can win by destroying their enemy's castle or building their castle up to 100
 		String winner=null;
@@ -107,7 +61,12 @@ class Game extends Duel{
 		{
 			winner="Player 1 ";
 		}
-		return winner;
+		//if there's a winner, display message and terminate the program
+		if (winner!=null)
+		{
+			System.out.println(winner+ " won!");
+			System.exit(0);//quit the game
+		}
 		
 	}
 	//bricks are increased depending on how many builders you have
@@ -128,12 +87,5 @@ class Game extends Duel{
 		p1.increaseCrystals(amount);
 		amount=p2.getMagic();
 		p2.increaseCrystals(amount);
-	}
-	
-	public static void main(String[] args) {
-		
-		Duel game = new Game(new Player(), "player1");
-		game = new Game(new Player(), "player2");
-		game.play();
 	}
 }

@@ -33,7 +33,6 @@ class Basic implements Strategy {
 	{
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
 		legalMoves=legalMoves(p);
-		int chosen; //index of chosen card
 		Move m=new UseCard(p.getCard(0));
 		//if theres no other cards to choose from, return this move
 		if (legalMoves.isEmpty())
