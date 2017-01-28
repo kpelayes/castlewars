@@ -1,4 +1,48 @@
-class Game {
+class Game extends Duel{
+
+	public Game(Player player, String key) {
+		super(player, key);
+		// TODO Auto-generated constructor stub
+	}
+	public Game() { }
+
+	public void play()
+	{
+		int playerTurn = 1;		
+		while (true)
+		{			
+			if (playerTurn % 2 == 1)
+			{
+				playerTurn = 1;
+			}
+			else if (playerTurn % 2 == 2)
+			{
+				playerTurn = 2;
+			}
+					
+			if (playerTurn == 1)
+			{
+				this.showHands(player1, null);
+				this.printResult(player1, player2);
+			}
+			else if (playerTurn == 2)
+			{
+				this.showHands(null, player2);
+				this.printResult(player2, player1);
+
+			}		
+			playerTurn++;
+		}
+	}
+	
+	public void printResult(Player p1, Player p2)
+	{
+		move = this.turn(p1, p2);
+		for (int i = 0; i < 5; i++)
+		{
+			System.out.println("\n");
+		}
+	}
 	
 	public Move turn(Player player,Player enemy){
 		Move moveMade=player.makeMove();
@@ -48,13 +92,21 @@ class Game {
 		//Users can win by destroying their enemy's castle or building their castle up to 100
 		String winner=null;
 		if(p1.getCastle()>99)
-			winner="Player 1";
-		if (p1.getCastle()<1)
-			winner="Player 2 ";
-		if (p2.getCastle()>99)
-			winner="Player 2 ";
-		if (p2.getCastle()<1)
+		{
 			winner="Player 1 ";
+		}
+		else if (p1.getCastle()<1)
+		{
+			winner="Player 2 ";
+		}
+		else if (p2.getCastle()>99)
+		{
+			winner="Player 2 ";
+		}
+		else if (p2.getCastle()<1)
+		{
+			winner="Player 1 ";
+		}
 		return winner;
 		
 	}
@@ -76,5 +128,12 @@ class Game {
 		p1.increaseCrystals(amount);
 		amount=p2.getMagic();
 		p2.increaseCrystals(amount);
+	}
+	
+	public static void main(String[] args) {
+		
+		Duel game = new Game(new Player(), "player1");
+		game = new Game(new Player(), "player2");
+		game.play();
 	}
 }

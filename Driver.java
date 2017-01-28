@@ -1,9 +1,10 @@
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class Driver {
-	Game game=new Game();
+	Duel game=  new Game();
 	Player p1=new Player();
 	Player p2=new Player();
 
