@@ -35,10 +35,11 @@ class Hand {
 		return hand.get(index);
 	}
 	//removes the card and adds a random card
-	public void removeCard(Card card)
+	public Card removeCard(Card card)
 	{
-		Card c=new Card();
+		Card newCard=new Card();
 		hand.remove(card);
-		hand.add(c);
+		hand.add(newCard);
+		return newCard;
 	}
 }

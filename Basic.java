@@ -1,24 +1,6 @@
 import java.util.ArrayList;
 class Basic implements Strategy {
-	public ArrayList<Card> legalMoves(Player player)
-	{
-		//check which cards player has enough stocks to be able to use and return array of these cards
-		ArrayList<Card> canUse=new ArrayList<Card>();
-		for(int i=0;i<8;i++){
-			if(player.getCard(i).getResource()=="crystals"){
-				if (player.getCrystals()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}else if (player.getCard(i).getResource()=="weapons"){
-				if (player.getWeapons()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}else if (player.getCard(i).getResource()=="bricks"){
-				if (player.getBricks()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}
-		}
-		return canUse;
-	}
-	public int discardCard(Player p)
+		public int discardCard(Player p)
 	{
 		//discard card that requires the most stocks
 		int highest= 0;
@@ -32,7 +14,11 @@ class Basic implements Strategy {
 	public Move getMove(Player p)
 	{
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
-		legalMoves=legalMoves(p);
+		for(int i=0;i<8;i++)
+		{
+			if (p.getCard(i).isPlayable())
+				legalMoves.add(p.getCard(i));
+		}
 		Move m=new UseCard(p.getCard(0));
 		//if theres no other cards to choose from, return this move
 		if (legalMoves.isEmpty())

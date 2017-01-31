@@ -1,23 +1,5 @@
 import java.util.*;
 class Attack implements Strategy{
-	public ArrayList<Card> legalMoves(Player player)
-	{
-		//check which cards player has enough stocks to be able to use and return array of these cards
-		ArrayList<Card> canUse=new ArrayList<Card>();
-		for(int i=0;i<8;i++){
-			if(player.getCard(i).getResource()=="crystals"){
-				if (player.getCrystals()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}else if (player.getCard(i).getResource()=="weapons"){
-				if (player.getWeapons()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}else if (player.getCard(i).getResource()=="bricks"){
-				if (player.getBricks()>=player.getCard(i).getAmount())
-					canUse.add(player.getCard(i));
-			}
-		}
-		return canUse;
-	}
 	public Card discardCard(Player p)
 	{/**
 		//find lowest resource
@@ -65,7 +47,11 @@ class Attack implements Strategy{
 			priority="build";
 		}
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
-		legalMoves=legalMoves(p);
+		for(int i=0;i<8;i++)
+		{
+			if (p.getCard(i).isPlayable())
+				legalMoves.add(p.getCard(i));
+		}
 		Move m=new UseCard(p.getCard(0));
 		if (legalMoves.isEmpty()){
 			m=new DiscardCard(discardCard(p));

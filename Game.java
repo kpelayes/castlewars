@@ -23,7 +23,6 @@ class Game extends Duel{
 		System.out.println(" - "+moveMade.getCard().getPower());
 		System.out.println("\n\n\n");
 		p1.destroyCard(moveMade.getCard());
-		
 		checkForWin(p1,p2);
 		
 		System.out.print("Player 2");

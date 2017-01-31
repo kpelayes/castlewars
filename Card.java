@@ -1,11 +1,12 @@
 import java.util.*;
 import java.util.Random;
-class Card {
+class Card implements Observer{
 	private String name; //card name	
 	private String resource; //what resource it needs to be able to use the card
 	private int amount;  //how much of that resource it needs
 	String type;      //what type of card, build,attack,resource,or gain
 	private String power;  //what power or effect it has
+	private boolean playable; //wether user has enough resources to use the card
 	private List<String> cardNames = Arrays.asList("Knight", "Sorcerer", "School", "Conjure weapons","Wall","Crush crystals","Swat","Defence","Pixies","Platoon","Base","Recruit","Saboteur","Crush weapons","Rider","Tower","Conjure crystals","Archer","Attack","Banshee","Babylon","Fort","Thief","Crush bricks","Fence","Dragon");
 	
 	//no-param constructor creates a random card
@@ -218,4 +219,21 @@ class Card {
 	public int getAmount(){return amount;}
 	public String getType(){return type;}
 	public String getPower(){return power;}
+	public void update(Observable o,Object arg){
+		playable=false;
+		Player playerUpdate=(Player) o;
+		if (resource=="bricks"){
+			if (playerUpdate.getBricks()>=amount)
+				playable=true;
+		}else if (resource=="weapons"){
+			if (playerUpdate.getWeapons()>=amount)
+				playable=true;
+		}else if (resource=="magic"){
+			if (playerUpdate.getMagic()>=amount)
+				playable=true;
+		}
+	}
+	public boolean isPlayable(){
+		return playable;
+	}
 }
