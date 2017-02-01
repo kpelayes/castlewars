@@ -12,7 +12,7 @@ public class Driver {
 	public void useCardtest()
 	{	
 		//players start off with 5 of each resource and 30 castle and 10 fence.
-		Card card=new Card("Wall"); //fence +3
+		Card card=new Wall(); //fence +3
 		Move move=new UseCard(card);
 		
 		//once the move is executed, fence should be 13, and player should have lost the one brick it needed to use the card
@@ -22,7 +22,7 @@ public class Driver {
 	}
 	@Test
 	public void discardCardtest(){
-		Card card=new Card("Banshee");
+		Card card=new Banshee();
 		Move move=new DiscardCard(card);
 		
 		//once the move is executed, player should not have lost any resources since it didn't use its power

@@ -1,25 +1,33 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Random;
 class Hand {
 	private ArrayList<Card> hand=new ArrayList<Card>(); //array of cards
+	private List<String> cardNames=Arrays.asList("Fence","Banshee","Wall");
 	
 	//no-param constructor creates hand of random cards
 	public Hand(){
 		for(int i=0;i<8;i++)
 		{
-			//create a hand of cards--random
-			Card card=new Card();
-			hand.add(card);
+			Random randomizer=new Random();
+			int rand=randomizer.nextInt(cardNames.size());
+			Card randomCard;
+			switch(rand){
+				case 0:
+					randomCard=new Fence();
+					break;
+				case 1:
+					randomCard=new Banshee();
+					break;
+				case 2:
+					randomCard=new Wall();
+					break;
+				default:
+					randomCard= new Banshee();
+			}
+			hand.add(randomCard);
 		}
 	}
 	
-	//constructor with array param creates hand with same cards in the array
-	public Hand(ArrayList<String> h){
-		for(int i=0;i<8;i++)
-		{
-			Card c=new Card(h.get(i));
-			hand.add(c);
-		}
-	}
 	public int size(){
 		return hand.size();
 	}
@@ -40,7 +48,22 @@ class Hand {
 	//removes the card and adds a random card
 	public Card removeCard(Card card)
 	{
-		Card newCard=new Card();
+		Random randomizer=new Random();
+		int rand=randomizer.nextInt(cardNames.size());
+		Card newCard;
+		switch(rand){
+		case 0:
+			newCard=new Fence();
+			break;
+		case 1:
+			newCard=new Banshee();
+			break;
+		case 2:
+			newCard=new Wall();
+			break;
+		default:
+			newCard=new Banshee();
+	}
 		hand.remove(card);
 		hand.add(newCard);
 		return newCard;
