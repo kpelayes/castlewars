@@ -22,6 +22,12 @@ class Player extends Observable{
 		castle=30;
 		fence=10;
 		hand=new Hand();
+		for (int i=0;i<hand.size();i++)
+		{
+			addObserver(hand.getCard(i));
+			setChanged();
+			notifyObservers();
+		}
 		strategy= new Basic();
 	}
 

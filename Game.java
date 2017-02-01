@@ -22,7 +22,10 @@ class Game extends Duel{
 		System.out.print(moveMade.getCard().getName());
 		System.out.println(" - "+moveMade.getCard().getPower());
 		System.out.println("\n\n\n");
+<<<<<<< Updated upstream
 		//p1.destroyCard(moveMade.getCard());
+=======
+>>>>>>> Stashed changes
 		checkForWin(p1,p2);
 		
 		System.out.print("Player 2");
@@ -32,7 +35,10 @@ class Game extends Duel{
 		System.out.print(moveMade.getCard().getName());
 		System.out.println(" - "+moveMade.getCard().getPower());
 		System.out.println("\n\n\n");
+<<<<<<< Updated upstream
 		//p2.destroyCard(moveMade.getCard());
+=======
+>>>>>>> Stashed changes
 		
 		checkForWin(p1,p2);
 		

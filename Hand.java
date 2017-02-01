@@ -20,6 +20,9 @@ class Hand {
 			hand.add(c);
 		}
 	}
+	public int size(){
+		return hand.size();
+	}
 	
 	//prints out each card in player's hand
 	public void displayHand(){

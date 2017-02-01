@@ -19,7 +19,7 @@ class Attack implements Strategy{
 		
 		Card highest=p.getCard(0);;
 		/**boolean set=false;
-		//finds card that requires the most of the scarces resource player has
+		//finds card that requires the most of the scarcest resource player has
 		for(int i=0;i<8;i++)
 		{
 			if (p.getCard(i).getResource()==lowestResource)
@@ -49,8 +49,8 @@ class Attack implements Strategy{
 		ArrayList<Card> legalMoves=new ArrayList<Card>();
 		for(int i=0;i<8;i++)
 		{
-			if (p.getCard(i).isPlayable())
-				legalMoves.add(p.getCard(i));
+			if (p.getCard(i).isPlayable()){
+				legalMoves.add(p.getCard(i));}
 		}
 		Move m=new UseCard(p.getCard(0));
 		if (legalMoves.isEmpty()){

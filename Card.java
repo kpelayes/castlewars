@@ -158,9 +158,6 @@ class Card implements Observer{
 			type="attack";
 		}
 	}
-	public void destroyCard(Player user){
-		user.destroyCard(this);
-	}
 	public void effect(Player user, Player enemy)
 	{
 		//Lose stocks
@@ -228,8 +225,8 @@ class Card implements Observer{
 		}else if (resource=="weapons"){
 			if (playerUpdate.getWeapons()>=amount)
 				playable=true;
-		}else if (resource=="magic"){
-			if (playerUpdate.getMagic()>=amount)
+		}else if (resource=="crystals"){
+			if (playerUpdate.getCrystals()>=amount)
 				playable=true;
 		}
 	}
