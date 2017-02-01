@@ -108,6 +108,7 @@ class Player extends Observable{
 		deleteObserver(card);
 		Card newCard=hand.removeCard(card);
 		addObserver(newCard);
+		notifyObservers();
 	}
 	
 }

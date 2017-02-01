@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 class Basic implements Strategy {
-		public int discardCard(Player p)
+	public int discardCard(Player p)
 	{
 		//discard card that requires the most stocks
 		int highest= 0;

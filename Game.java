@@ -22,7 +22,7 @@ class Game extends Duel{
 		System.out.print(moveMade.getCard().getName());
 		System.out.println(" - "+moveMade.getCard().getPower());
 		System.out.println("\n\n\n");
-		p1.destroyCard(moveMade.getCard());
+		//p1.destroyCard(moveMade.getCard());
 		checkForWin(p1,p2);
 		
 		System.out.print("Player 2");
@@ -32,7 +32,7 @@ class Game extends Duel{
 		System.out.print(moveMade.getCard().getName());
 		System.out.println(" - "+moveMade.getCard().getPower());
 		System.out.println("\n\n\n");
-		p2.destroyCard(moveMade.getCard());
+		//p2.destroyCard(moveMade.getCard());
 		
 		checkForWin(p1,p2);
 		
