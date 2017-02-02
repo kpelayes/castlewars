@@ -114,6 +114,15 @@ class Player extends Observable{
 		deleteObserver(card);
 		Card newCard=hand.removeCard(card);
 		addObserver(newCard);
+		setChanged();
+		notifyObservers();
+	}
+	public void exchangeCard(Card card, Card newCard)
+	{
+		deleteObserver(card);
+		hand.exchangeCard(card, newCard);
+		addObserver(newCard);
+		setChanged();
 		notifyObservers();
 	}
 	
