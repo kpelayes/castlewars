@@ -62,6 +62,56 @@ public class Driver {
 		assertEquals("Platoon",player.getHand().getCard(7).getName());
 		assertTrue(player.getHand().getCard(7).isPlayable());
 	}
+	@Test
+	public void AttacksTest(){
+		//add Attack card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new Attacks();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Attack",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void KnightTest(){
+		//add Knight card to player's hand
+		//assert the card is playable because player starts off with enough stocks
+		Card card=new Knight();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Knight",player.getHand().getCard(7).getName());
+		assertTrue(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void BabylonTest(){
+		//add Babylon card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new Babylon();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Babylon",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void TowerTest(){
+		//add Tower card to player's hand
+		//assert the card is playable because player starts off with enough stocks
+		Card card=new Tower();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Tower",player.getHand().getCard(7).getName());
+		assertTrue(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void WainTest(){
+		//add Wain card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new Wain();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Wain",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
 	@AfterClass
 	public static void runOnce(){
 		System.out.println("\n\n\nBattle\n\n\n");

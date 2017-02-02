@@ -1,5 +1,4 @@
 
-
 public class Banshee extends Card {
 	public Banshee(){
 		name="Banshee";
