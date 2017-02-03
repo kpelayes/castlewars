@@ -63,6 +63,16 @@ public class Driver {
 		assertTrue(player.getHand().getCard(7).isPlayable());
 	}
 	@Test
+	public void WallTest(){
+		//add Platoon card to player's hand
+		//assert the card is playable because player starts off with enough stocks
+		Card card=new Wall();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Wall",player.getHand().getCard(7).getName());
+		assertTrue(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
 	public void AttacksTest(){
 		//add Attack card to player's hand
 		//assert the card is not playable because player doesn't start off with enough stocks
@@ -90,6 +100,26 @@ public class Driver {
 		Player player=new Player();
 		player.exchangeCard(player.getHand().getCard(1),card);
 		assertEquals("Babylon",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void DragonTest(){
+		//add Babylon card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new Dragon();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Dragon",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void PixiesTest(){
+		//add Babylon card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new Pixies();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Pixies",player.getHand().getCard(7).getName());
 		assertFalse(player.getHand().getCard(7).isPlayable());
 	}
 	@Test
