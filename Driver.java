@@ -112,6 +112,46 @@ public class Driver {
 		assertEquals("Wain",player.getHand().getCard(7).getName());
 		assertFalse(player.getHand().getCard(7).isPlayable());
 	}
+	@Test
+	public void SchoolTest(){
+		//add School card to players hand
+		//assert the card is not playable because player doesn't start of with enough stocks
+		Card card=new School();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("School",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());	
+	}
+	@Test
+	public void ConjureCrystalsTest(){
+		//add Conjure Crystal card to player's hand
+		//assert the card is not playable because player doesn't start off with enough stocks
+		Card card=new ConjureCrystal();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Conjure Crystals",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void RiderTest(){
+		//add Rider card to players hand
+		//assert the card is not playable because player doesn't start of with enough stocks
+		Card card=new Rider();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Rider",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());
+	}
+	@Test
+	public void FortTest(){
+		//add School card to players hand
+		//assert the card is not playable because player doesn't start of with enough stocks
+		Card card=new Fort();
+		Player player=new Player();
+		player.exchangeCard(player.getHand().getCard(1),card);
+		assertEquals("Fort",player.getHand().getCard(7).getName());
+		assertFalse(player.getHand().getCard(7).isPlayable());		
+	}
 	@AfterClass
 	public static void runOnce(){
 		System.out.println("\n\n\nBattle\n\n\n");

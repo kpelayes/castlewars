@@ -2,8 +2,8 @@
 public class Knight extends Card{
 	
 	public Knight(){
-		name = "Knight";
-		resource= "weapons";
+		name="Knight";
+		resource="weapons";
 		amount=2;
 		type="attack";
 		power="attack 3";

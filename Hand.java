@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.Random;
 class Hand {
 	private ArrayList<Card> hand=new ArrayList<Card>(); //array of cards
-	private List<String> cardNames=Arrays.asList("Fence","Banshee","Wall","Pixies","Dragon","Platoon","Recruit");
+	private List<String> cardNames=Arrays.asList("Fence","Banshee","Wall","Pixies","Dragon","Platoon","Recruit", "Attack", "Babylon", "Knight", "Wain","School","Conjure Crystals","Rider","Fort");
 	
 	//no-param constructor creates hand of random cards
 	public Hand(){
@@ -37,6 +37,30 @@ class Hand {
 				break;
 			case 6:
 				randomCard=new Recruit();
+				break;
+			case 7:
+				randomCard=new Attacks();
+				break;
+			case 8:
+				randomCard=new Babylon();
+				break;
+			case 9:
+				randomCard=new Knight();
+				break;
+			case 10:
+				randomCard=new Wain();
+				break;
+			case 11:
+				randomCard=new School();
+				break;
+			case 12:
+				randomCard=new ConjureCrystal();
+				break;
+			case 13:
+				randomCard=new Rider();
+				break;
+			case 14:
+				randomCard=new Fort();
 				break;
 			default:
 				randomCard= new Banshee();
